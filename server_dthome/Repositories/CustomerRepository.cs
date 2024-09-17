@@ -18,12 +18,22 @@ namespace server_dthome.Repositories
 
         public CustomerVM Create(CustomerModel cusModel)
         {
-            throw new NotImplementedException();
+            var customer = _mapper.Map<Customer>(cusModel);
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+            return _mapper.Map<CustomerVM>(customer);
         }
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            var customer = _context.Customers.FirstOrDefault(r => r.CustomerId == id);
+            if (customer != null)
+            {
+                _context.Customers.Remove(customer);
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
         }
 
         public List<CustomerVM> GetAll()
@@ -42,7 +52,14 @@ namespace server_dthome.Repositories
 
         public bool Update(int id, CustomerModel cusModel)
         {
-            throw new NotImplementedException();
+            var customer = _context.Customers.FirstOrDefault(r => r.CustomerId == id);
+            if (customer != null)
+            {
+                _mapper.Map(cusModel, customer);
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
         }
     }
 }

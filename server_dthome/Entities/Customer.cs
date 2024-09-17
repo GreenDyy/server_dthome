@@ -17,6 +17,8 @@ public partial class Customer
 
     public string? PhotoUrl { get; set; }
 
+    public DateTime? DateOfBirth { get; set; }
+
     public string? CitizenIdphotoFirstUrl { get; set; }
 
     public string? CitizenIdphotoBackUrl { get; set; }

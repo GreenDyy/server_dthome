@@ -31,11 +31,11 @@ public partial class DthomeContext : DbContext
     {
         modelBuilder.Entity<Customer>(entity =>
         {
-            entity.HasKey(e => e.CustomerId).HasName("PK__Customer__A4AE64D8445FC040");
+            entity.HasKey(e => e.CustomerId).HasName("PK__Customer__A4AE64D8837D293E");
 
             entity.ToTable("Customer");
 
-            entity.HasIndex(e => e.CitizenId, "UQ__Customer__6E49FBED7AF0035E").IsUnique();
+            entity.HasIndex(e => e.CitizenId, "UQ__Customer__6E49FBEDEB48D2FD").IsUnique();
 
             entity.Property(e => e.AnotherPhotoUrl)
                 .HasMaxLength(255)
@@ -53,6 +53,7 @@ public partial class DthomeContext : DbContext
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
             entity.Property(e => e.CustomerName).HasMaxLength(100);
+            entity.Property(e => e.DateOfBirth).HasColumnType("datetime");
             entity.Property(e => e.Email).HasMaxLength(100);
             entity.Property(e => e.PhoneNumber).HasMaxLength(20);
             entity.Property(e => e.PhotoUrl)
@@ -65,7 +66,7 @@ public partial class DthomeContext : DbContext
 
         modelBuilder.Entity<MemberOfRental>(entity =>
         {
-            entity.HasKey(e => e.MemberOfRentalId).HasName("PK__MemberOf__766D4F363F7BCABD");
+            entity.HasKey(e => e.MemberOfRentalId).HasName("PK__MemberOf__766D4F365952135A");
 
             entity.ToTable("MemberOfRental");
 
@@ -82,7 +83,7 @@ public partial class DthomeContext : DbContext
 
         modelBuilder.Entity<Rental>(entity =>
         {
-            entity.HasKey(e => e.RentalId).HasName("PK__Rental__970059430C5F69F2");
+            entity.HasKey(e => e.RentalId).HasName("PK__Rental__970059436028F36E");
 
             entity.ToTable("Rental");
 
@@ -107,7 +108,7 @@ public partial class DthomeContext : DbContext
 
         modelBuilder.Entity<Room>(entity =>
         {
-            entity.HasKey(e => e.RoomId).HasName("PK__Room__32863939EFB46B67");
+            entity.HasKey(e => e.RoomId).HasName("PK__Room__32863939FD085478");
 
             entity.ToTable("Room");
 

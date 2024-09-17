@@ -2,7 +2,6 @@
 {
     public class CustomerModel
     {
-        public int CustomerId { get; set; }
         public string CustomerName { get; set; } = null!;
 
         public string? CitizenId { get; set; }
@@ -12,6 +11,8 @@
         public string? PhoneNumber { get; set; }
 
         public string? PhotoUrl { get; set; }
+
+        public DateTime? DateOfBirth { get; set; }
 
         public string? CitizenIdphotoFirstUrl { get; set; }
 

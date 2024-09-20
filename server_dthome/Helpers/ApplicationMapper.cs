@@ -14,11 +14,19 @@ namespace server_dthome.Helpers
             CreateMap<Customer, CustomerVM>().ReverseMap();
             CreateMap<Rental, RentalVM>().ReverseMap();
             CreateMap<MemberOfRental, MemberOfRentalVM>().ReverseMap();
+            CreateMap<Power, PowerVM>().ReverseMap();
+            CreateMap<Trash, TrashVM>().ReverseMap();   
+            CreateMap<Water, WaterVM>().ReverseMap();
+            CreateMap<Invoice, InvoiceVM>().ReverseMap();
             //for update and create || là lấy data từ model đổ vào để tạo hoac sửa data trong entity
             CreateMap<RoomModel, Room>();
             CreateMap<CustomerModel, Customer>();
             CreateMap<RentalModel, Rental>();
             CreateMap<MemberOfRentalModel, MemberOfRental>();
+            CreateMap<PowerModel, Power>();
+            CreateMap<TrashModel, Trash>(); 
+            CreateMap<WaterModel, Water>();
+            CreateMap<InvoiceModel, Invoice>();
         }
     }
 }

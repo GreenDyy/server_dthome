@@ -29,6 +29,8 @@ public partial class Customer
 
     public DateTime? UpdatedAt { get; set; }
 
+    public virtual ICollection<Invoice> Invoices { get; set; } = new List<Invoice>();
+
     public virtual ICollection<MemberOfRental> MemberOfRentals { get; set; } = new List<MemberOfRental>();
 
     public virtual ICollection<Rental> Rentals { get; set; } = new List<Rental>();

@@ -24,6 +24,10 @@ builder.Services.AddScoped<IRoomRepository, RoomRepository>();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IRentalRepository, RentalRepository>();
 builder.Services.AddScoped<IMemberOfRentalRepository, MemberOfRentalRepository>();
+builder.Services.AddScoped<IWaterRepository, WaterRepository>();
+builder.Services.AddScoped<ITrashRepository, TrashRepository>();    
+builder.Services.AddScoped<IPowerRepository, PowerRepository>();
+builder.Services.AddScoped<IInvoiceRepository, InvoiceRepository>();
 
 var app = builder.Build();
 

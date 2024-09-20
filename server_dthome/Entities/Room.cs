@@ -9,7 +9,15 @@ public partial class Room
 
     public string RoomName { get; set; } = null!;
 
-    public decimal? RoomPrice { get; set; }
+    public decimal RoomPrice { get; set; }
+
+    public int WaterAfter { get; set; }
+
+    public int WaterBefore { get; set; }
+
+    public int PowerAfter { get; set; }
+
+    public int PowerBefore { get; set; }
 
     public string? PhotoUrl { get; set; }
 
@@ -18,6 +26,8 @@ public partial class Room
     public DateTime? CreatedAt { get; set; }
 
     public DateTime? UpdatedAt { get; set; }
+
+    public virtual ICollection<Invoice> Invoices { get; set; } = new List<Invoice>();
 
     public virtual ICollection<Rental> Rentals { get; set; } = new List<Rental>();
 }

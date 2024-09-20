@@ -17,11 +17,19 @@ public partial class DthomeContext : DbContext
 
     public virtual DbSet<Customer> Customers { get; set; }
 
+    public virtual DbSet<Invoice> Invoices { get; set; }
+
     public virtual DbSet<MemberOfRental> MemberOfRentals { get; set; }
+
+    public virtual DbSet<Power> Powers { get; set; }
 
     public virtual DbSet<Rental> Rentals { get; set; }
 
     public virtual DbSet<Room> Rooms { get; set; }
+
+    public virtual DbSet<Trash> Trashes { get; set; }
+
+    public virtual DbSet<Water> Water { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -31,11 +39,11 @@ public partial class DthomeContext : DbContext
     {
         modelBuilder.Entity<Customer>(entity =>
         {
-            entity.HasKey(e => e.CustomerId).HasName("PK__Customer__A4AE64D8837D293E");
+            entity.HasKey(e => e.CustomerId).HasName("PK__Customer__A4AE64D8DA19951A");
 
             entity.ToTable("Customer");
 
-            entity.HasIndex(e => e.CitizenId, "UQ__Customer__6E49FBEDEB48D2FD").IsUnique();
+            entity.HasIndex(e => e.CitizenId, "UQ__Customer__6E49FBED5120D1C1").IsUnique();
 
             entity.Property(e => e.AnotherPhotoUrl)
                 .HasMaxLength(255)
@@ -64,9 +72,40 @@ public partial class DthomeContext : DbContext
                 .HasColumnType("datetime");
         });
 
+        modelBuilder.Entity<Invoice>(entity =>
+        {
+            entity.HasKey(e => e.InvoiceId).HasName("PK__Invoice__D796AAD5D4A0538A");
+
+            entity.ToTable("Invoice");
+
+            entity.Property(e => e.InvoiceId).HasColumnName("InvoiceID");
+            entity.Property(e => e.Amount).HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+            entity.Property(e => e.Description).HasMaxLength(255);
+            entity.Property(e => e.PowerEnd).HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.PowerStart).HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.PowerUsage).HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.RentalId).HasColumnName("RentalID");
+            entity.Property(e => e.RoomId).HasColumnName("RoomID");
+            entity.Property(e => e.Status).HasMaxLength(50);
+            entity.Property(e => e.WaterEnd).HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.WaterStart).HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.WaterUsage).HasColumnType("decimal(10, 2)");
+
+            entity.HasOne(d => d.Customer).WithMany(p => p.Invoices)
+                .HasForeignKey(d => d.CustomerId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Invoice__Custome__5CD6CB2B");
+
+            entity.HasOne(d => d.Room).WithMany(p => p.Invoices)
+                .HasForeignKey(d => d.RoomId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Invoice__RoomID__5DCAEF64");
+        });
+
         modelBuilder.Entity<MemberOfRental>(entity =>
         {
-            entity.HasKey(e => e.MemberOfRentalId).HasName("PK__MemberOf__766D4F365952135A");
+            entity.HasKey(e => e.MemberOfRentalId).HasName("PK__MemberOf__766D4F36580B3E67");
 
             entity.ToTable("MemberOfRental");
 
@@ -81,9 +120,19 @@ public partial class DthomeContext : DbContext
                 .HasConstraintName("FK_MemberOfRental_Rental");
         });
 
+        modelBuilder.Entity<Power>(entity =>
+        {
+            entity.HasKey(e => e.PowerId).HasName("PK__Power__8C5F25B08EF540E2");
+
+            entity.ToTable("Power");
+
+            entity.Property(e => e.PowerId).HasColumnName("PowerID");
+            entity.Property(e => e.PricePerUnit).HasColumnType("decimal(10, 2)");
+        });
+
         modelBuilder.Entity<Rental>(entity =>
         {
-            entity.HasKey(e => e.RentalId).HasName("PK__Rental__970059436028F36E");
+            entity.HasKey(e => e.RentalId).HasName("PK__Rental__97005943E208D13C");
 
             entity.ToTable("Rental");
 
@@ -108,7 +157,7 @@ public partial class DthomeContext : DbContext
 
         modelBuilder.Entity<Room>(entity =>
         {
-            entity.HasKey(e => e.RoomId).HasName("PK__Room__32863939FD085478");
+            entity.HasKey(e => e.RoomId).HasName("PK__Room__328639395CBF0C25");
 
             entity.ToTable("Room");
 
@@ -124,6 +173,24 @@ public partial class DthomeContext : DbContext
             entity.Property(e => e.UpdatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
+        });
+
+        modelBuilder.Entity<Trash>(entity =>
+        {
+            entity.HasKey(e => e.TrashId).HasName("PK__Trash__E7477AC4D1B3C2E5");
+
+            entity.ToTable("Trash");
+
+            entity.Property(e => e.TrashId).HasColumnName("TrashID");
+            entity.Property(e => e.PricePerUnit).HasColumnType("decimal(10, 2)");
+        });
+
+        modelBuilder.Entity<Water>(entity =>
+        {
+            entity.HasKey(e => e.WaterId).HasName("PK__Water__C4F18EAF679C0A27");
+
+            entity.Property(e => e.WaterId).HasColumnName("WaterID");
+            entity.Property(e => e.PricePerUnit).HasColumnType("decimal(10, 2)");
         });
 
         OnModelCreatingPartial(modelBuilder);

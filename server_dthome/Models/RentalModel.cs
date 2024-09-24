@@ -17,11 +17,5 @@ namespace server_dthome.Models
         public DateTime? CreatedAt { get; set; }
 
         public DateTime? UpdatedAt { get; set; }
-
-        public virtual Customer? Customer { get; set; }
-
-        public virtual ICollection<MemberOfRental> MemberOfRentals { get; set; } = new List<MemberOfRental>();
-
-        public virtual Room? Room { get; set; }
     }
 }

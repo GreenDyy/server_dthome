@@ -2,7 +2,6 @@
 {
     public class WaterModel
     {
-
         public decimal PricePerUnit { get; set; }
 
         public DateOnly EffectiveDate { get; set; }

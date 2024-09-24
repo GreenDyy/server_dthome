@@ -9,9 +9,5 @@ namespace server_dthome.Models
         public int? CustomerId { get; set; }
 
         public string? RoleMember { get; set; }
-
-        public virtual Customer? Customer { get; set; }
-
-        public virtual Rental? Rental { get; set; }
     }
 }

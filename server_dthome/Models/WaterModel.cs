@@ -4,6 +4,8 @@
     {
         public decimal PricePerUnit { get; set; }
 
-        public DateOnly EffectiveDate { get; set; }
+        public DateTime EffectiveDate { get; set; }
+
+        public int? OwnerId { get; set; }
     }
 }

@@ -17,5 +17,7 @@ namespace server_dthome.Models
         public DateTime? CreatedAt { get; set; }
 
         public DateTime? UpdatedAt { get; set; }
+
+        public int? OwnerId { get; set; }
     }
 }

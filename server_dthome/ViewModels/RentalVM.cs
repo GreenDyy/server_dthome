@@ -25,5 +25,7 @@ namespace server_dthome.ViewModels
         public virtual ICollection<MemberOfRentalVM> MemberOfRentals { get; set; } = new List<MemberOfRentalVM>();
 
         public virtual Room? Room { get; set; }
+
+        public int? OwnerId { get; set; }
     }
 }

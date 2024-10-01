@@ -17,5 +17,7 @@ namespace server_dthome.ViewModels
         public virtual Customer? Customer { get; set; }
 
         public virtual Rental? Rental { get; set; }
+
+        public int? OwnerId { get; set; }
     }
 }

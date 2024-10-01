@@ -27,7 +27,11 @@ public partial class Room
 
     public DateTime? UpdatedAt { get; set; }
 
+    public int? OwnerId { get; set; }
+
     public virtual ICollection<Invoice> Invoices { get; set; } = new List<Invoice>();
+
+    public virtual OwnerBuilding? Owner { get; set; }
 
     public virtual ICollection<Rental> Rentals { get; set; } = new List<Rental>();
 }

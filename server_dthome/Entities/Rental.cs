@@ -21,9 +21,13 @@ public partial class Rental
 
     public DateTime? UpdatedAt { get; set; }
 
+    public int? OwnerId { get; set; }
+
     public virtual Customer? Customer { get; set; }
 
     public virtual ICollection<MemberOfRental> MemberOfRentals { get; set; } = new List<MemberOfRental>();
+
+    public virtual OwnerBuilding? Owner { get; set; }
 
     public virtual Room? Room { get; set; }
 }

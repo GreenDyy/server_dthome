@@ -9,5 +9,7 @@ namespace server_dthome.Models
         public int? CustomerId { get; set; }
 
         public string? RoleMember { get; set; }
+
+        public int? OwnerId { get; set; }
     }
 }

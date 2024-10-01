@@ -11,7 +11,7 @@ namespace server_dthome.Models
 
         public int RoomId { get; set; }
 
-        public DateOnly CreateAt { get; set; }
+        public DateTime CreateAt { get; set; }
 
         public decimal Amount { get; set; }
 
@@ -30,5 +30,7 @@ namespace server_dthome.Models
         public decimal? WaterUsage { get; set; }
 
         public decimal? PowerUsage { get; set; }
+
+        public int? OwnerId { get; set; }
     }
 }

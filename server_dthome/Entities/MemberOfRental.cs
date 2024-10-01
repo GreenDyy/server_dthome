@@ -13,7 +13,11 @@ public partial class MemberOfRental
 
     public string? RoleMember { get; set; }
 
+    public int? OwnerId { get; set; }
+
     public virtual Customer? Customer { get; set; }
+
+    public virtual OwnerBuilding? Owner { get; set; }
 
     public virtual Rental? Rental { get; set; }
 }

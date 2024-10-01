@@ -27,6 +27,8 @@ namespace server_dthome.ViewModels
 
         public DateTime? UpdatedAt { get; set; }
 
+        public int? OwnerId { get; set; }
+
         public virtual ICollection<MemberOfRentalVM> MemberOfRentals { get; set; } = new List<MemberOfRentalVM>();
 
         public virtual ICollection<Rental> Rentals { get; set; } = new List<Rental>();

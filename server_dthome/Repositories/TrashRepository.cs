@@ -61,11 +61,11 @@ namespace server_dthome.Repositories
             return false;
         }
 
-        public TrashVM GetLatestPrice()
+        public TrashVM GetLatestPrice(int ownerId)
         {
             var latestTrash = _context.Trashes
                 .OrderByDescending(t => t.EffectiveDate)
-                .FirstOrDefault();
+                .FirstOrDefault(t=>t.OwnerId==ownerId);
             return _mapper.Map<TrashVM>(latestTrash);
         }
     }

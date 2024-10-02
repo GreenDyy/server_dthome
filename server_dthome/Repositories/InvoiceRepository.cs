@@ -43,9 +43,16 @@ namespace server_dthome.Repositories
             return invoiceVMs;
         }
 
-        public InvoiceVM GetById(int id)
+        public List<InvoiceVM> GetAll(int ownerId)
         {
-            var invoice = _context.Invoices.FirstOrDefault(i => i.InvoiceId == id);
+            var invoices = _context.Invoices.Where(t => t.OwnerId == ownerId).ToList();
+            var invoiceVMs = _mapper.Map<List<InvoiceVM>>(invoices);
+            return invoiceVMs;
+        }
+
+        public InvoiceVM GetById(int ownerId, int id)
+        {
+            var invoice = _context.Invoices.FirstOrDefault(i => i.OwnerId == ownerId && i.InvoiceId == id);
             return _mapper.Map<InvoiceVM>(invoice);
         }
 

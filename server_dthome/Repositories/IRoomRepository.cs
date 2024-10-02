@@ -7,8 +7,9 @@ namespace server_dthome.Repositories
     {
         //lấy all
         public List<RoomVM> GetAll();
+        public List<RoomVM> GetAllByOwnerId(int ownerId);
         //lấy 1
-        public RoomVM GetById(int id);
+        public RoomVM GetById(int ownerId, int id);
         //thêm
         public RoomVM Create(RoomModel roomModel);
         //xoá

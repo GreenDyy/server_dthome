@@ -7,8 +7,9 @@ namespace server_dthome.Repositories
     {
         // Lấy tất cả hóa đơn
         public List<InvoiceVM> GetAll();
+        public List<InvoiceVM> GetAll(int ownerId);
         // Lấy hóa đơn theo ID
-        public InvoiceVM GetById(int id);
+        public InvoiceVM GetById(int ownerId, int id);
         // Thêm hóa đơn mới
         public InvoiceVM Create(InvoiceModel invoiceModel);
         // Xóa hóa đơn theo ID

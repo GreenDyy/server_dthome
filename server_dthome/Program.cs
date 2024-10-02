@@ -28,6 +28,8 @@ builder.Services.AddScoped<IWaterRepository, WaterRepository>();
 builder.Services.AddScoped<ITrashRepository, TrashRepository>();    
 builder.Services.AddScoped<IPowerRepository, PowerRepository>();
 builder.Services.AddScoped<IInvoiceRepository, InvoiceRepository>();
+builder.Services.AddScoped<IOwnerAccountRepository, OwnerAccountRepository>();
+builder.Services.AddScoped<IOwnerBuildingRepository, OwnerBuildingRepository>();
 
 var app = builder.Build();
 

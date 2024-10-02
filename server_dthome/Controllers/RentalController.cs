@@ -30,12 +30,26 @@ namespace server_dthome.Controllers
             }
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        [HttpGet("{ownerId}/get-all")]
+        public IActionResult GetAll(int ownerId)
         {
             try
             {
-                var rental = _rentalRepository.GetById(id);
+                var rentals = _rentalRepository.GetAll(ownerId);
+                return Ok(rentals);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.Message });
+            }
+        }
+
+        [HttpGet("{ownerId}/{id}")]
+        public IActionResult GetById(int ownerId, int id)
+        {
+            try
+            {
+                var rental = _rentalRepository.GetById(ownerId, id);
                 if (rental != null)
                 {
                     return Ok(rental);
@@ -51,12 +65,12 @@ namespace server_dthome.Controllers
             }
         }
 
-        [HttpGet("get-by-room-and-status/{idRoom}/{isRenting}")]
-        public IActionResult GetByIdAndIsRenting(int idRoom, bool isRenting)
+        [HttpGet("{ownerId}/get-by-room-and-status/{idRoom}/{isRenting}")]
+        public IActionResult GetByIdAndIsRenting(int ownerId, int idRoom, bool isRenting)
         {
             try
             {
-                var rental = _rentalRepository.GetByIdRoomAndIsRenting(idRoom, isRenting);
+                var rental = _rentalRepository.GetByIdRoomAndIsRenting(ownerId, idRoom, isRenting);
                 if (rental != null)
                 {
                     return Ok(rental);

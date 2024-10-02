@@ -42,9 +42,16 @@ namespace server_dthome.Repositories
             return roomVMs;
         }
 
-        public RoomVM GetById(int id)
+        public List<RoomVM> GetAllByOwnerId(int ownerId)
         {
-            var room = _context.Rooms.FirstOrDefault(r => r.RoomId == id);
+            var rooms = _context.Rooms.Where(room => room.OwnerId == ownerId).ToList();
+            var roomVMs = _mapper.Map<List<RoomVM>>(rooms);
+            return roomVMs;
+        }
+
+        public RoomVM GetById(int ownerId, int id)
+        {
+            var room = _context.Rooms.FirstOrDefault(r => r.OwnerId == ownerId && r.RoomId == id);
             return _mapper.Map<RoomVM>(room);
         }
 

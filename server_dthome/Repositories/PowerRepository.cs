@@ -61,11 +61,11 @@ namespace server_dthome.Repositories
             return false;
         }
 
-        public PowerVM GetLatestPrice()
+        public PowerVM GetLatestPrice(int ownerId)
         {
             var latestPower = _context.Powers
                 .OrderByDescending(p => p.EffectiveDate)
-                .FirstOrDefault();
+                .FirstOrDefault(p=>p.OwnerId==ownerId);
             return _mapper.Map<PowerVM>(latestPower);
         }
     }

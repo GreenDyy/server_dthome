@@ -7,8 +7,10 @@ namespace server_dthome.Repositories
     {
         //lấy all
         public List<CustomerVM> GetAll();
+        public List<CustomerVM> GetAll(int ownerId);
         //lấy 1
         public CustomerVM GetById(int id);
+        public CustomerVM GetById(int ownerId, int id);
         //thêm
         public CustomerVM Create(CustomerModel cusModel);
         //xoá

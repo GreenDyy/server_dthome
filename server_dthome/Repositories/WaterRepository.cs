@@ -61,11 +61,11 @@ namespace server_dthome.Repositories
             return false;
         }
 
-        public WaterVM GetLatestPrice()
+        public WaterVM GetLatestPrice(int ownerId)
         {
             var latestWater = _context.Water
                 .OrderByDescending(w => w.EffectiveDate)
-                .FirstOrDefault();
+                .FirstOrDefault(w => w.OwnerId == ownerId);
             return _mapper.Map<WaterVM>(latestWater);
         }
     }

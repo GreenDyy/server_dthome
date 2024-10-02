@@ -17,12 +17,12 @@ namespace server_dthome.Controllers
             _roomRepository = roomRepository;
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        [HttpGet("{ownerId}/{id}")]
+        public IActionResult GetById(int ownerId, int id)
         {
             try
             {
-                var room = _roomRepository.GetById(id);
+                var room = _roomRepository.GetById(ownerId, id);
                 if (room != null)
                 {
                     return Ok(room);
@@ -44,6 +44,19 @@ namespace server_dthome.Controllers
             try
             {
                 return Ok(_roomRepository.GetAll());
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        [HttpGet("{ownerId}/get-all")]
+        public IActionResult GetAllByOwnerId(int ownerId)
+        {
+            try
+            {
+                return Ok(_roomRepository.GetAllByOwnerId(ownerId));
             }
             catch
             {

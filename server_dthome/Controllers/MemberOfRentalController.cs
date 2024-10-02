@@ -30,12 +30,12 @@ public class MemberOfRentalController : ControllerBase
         }
     }
 
-    [HttpGet("get-all-by-rental/{idRental}")]
-    public IActionResult GetByIdRental(int idRental)
+    [HttpGet("{ownerId}/get-all-by-rental/{idRental}")]
+    public IActionResult GetByIdRental(int ownerId, int idRental)
     {
         try
         {
-            var members = _memberOfRentalRepository.GetByIdRental(idRental);
+            var members = _memberOfRentalRepository.GetByIdRental(ownerId, idRental);
             return Ok(members);
         }
         catch (Exception ex)
@@ -45,11 +45,11 @@ public class MemberOfRentalController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public IActionResult GetById(int id)
+    public IActionResult GetById(int ownerId, int id)
     {
         try
         {
-            var member = _memberOfRentalRepository.GetById(id);
+            var member = _memberOfRentalRepository.GetById(ownerId, id);
             if (member != null)
             {
                 return Ok(member);

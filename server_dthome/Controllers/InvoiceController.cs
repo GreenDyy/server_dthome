@@ -17,12 +17,12 @@ namespace server_dthome.Controllers
             _invoiceRepository = invoiceRepository;
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        [HttpGet("{ownerId}/{id}")]
+        public IActionResult GetById(int ownerId, int id)
         {
             try
             {
-                var invoice = _invoiceRepository.GetById(id);
+                var invoice = _invoiceRepository.GetById(ownerId, id);
                 if (invoice != null)
                 {
                     return Ok(invoice);
@@ -44,6 +44,19 @@ namespace server_dthome.Controllers
             try
             {
                 return Ok(_invoiceRepository.GetAll());
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        [HttpGet("{ownerId}/get-all")]
+        public IActionResult GetAll(int ownerId)
+        {
+            try
+            {
+                return Ok(_invoiceRepository.GetAll(ownerId));
             }
             catch
             {

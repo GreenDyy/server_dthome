@@ -22,15 +22,21 @@ namespace server_dthome.Repositories
             return _mapper.Map<List<RentalVM>>(rentals);
         }
 
-        public RentalVM GetById(int id)
+        public List<RentalVM> GetAll(int ownerId)
         {
-            var rental = _context.Rentals.FirstOrDefault(r => r.RentalId == id);
+            var rentals = _context.Rentals.Where(r=>r.OwnerId==ownerId).ToList();
+            return _mapper.Map<List<RentalVM>>(rentals);
+        }
+
+        public RentalVM GetById(int ownerId, int id)
+        {
+            var rental = _context.Rentals.FirstOrDefault(r => r.OwnerId == ownerId && r.RentalId == id);
             return _mapper.Map<RentalVM>(rental);
         }
 
-        public RentalVM GetByIdRoomAndIsRenting(int idRoom, bool isRenting)
+        public RentalVM GetByIdRoomAndIsRenting(int ownerId, int idRoom, bool isRenting)
         {
-            var rental = _context.Rentals.FirstOrDefault(r => r.RoomId == idRoom && r.IsRenting == isRenting);
+            var rental = _context.Rentals.FirstOrDefault(r => r.OwnerId == ownerId && r.RoomId == idRoom && r.IsRenting == isRenting);
             return _mapper.Map<RentalVM>(rental);
         }
 

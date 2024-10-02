@@ -16,6 +16,6 @@ namespace server_dthome.Repositories
         // Sửa
         public bool Update(int id, PowerModel powerModel);
         // Lấy giá mới nhất
-        public PowerVM GetLatestPrice();
+        public PowerVM GetLatestPrice(int ownerId);
     }
 }

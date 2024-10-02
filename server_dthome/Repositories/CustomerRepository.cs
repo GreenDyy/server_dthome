@@ -43,9 +43,23 @@ namespace server_dthome.Repositories
             return customerVMs;
         }
 
+        public List<CustomerVM> GetAll(int ownerId)
+        {
+            var customer = _context.Customers.Where(c => c.OwnerId == ownerId).ToList();
+            var customerVMs = _mapper.Map<List<CustomerVM>>(customer);
+            return customerVMs;
+        }
+
         public CustomerVM GetById(int id)
         {
             var customer = _context.Customers.FirstOrDefault(c => c.CustomerId == id);
+            var customerVM = _mapper.Map<CustomerVM>(customer);
+            return customerVM;
+        }
+
+        public CustomerVM GetById(int ownerId, int id)
+        {
+            var customer = _context.Customers.FirstOrDefault(c => c.OwnerId == ownerId && c.CustomerId == id);
             var customerVM = _mapper.Map<CustomerVM>(customer);
             return customerVM;
         }

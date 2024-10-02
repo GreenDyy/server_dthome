@@ -51,12 +51,12 @@ namespace server_dthome.Controllers
             }
         }
 
-        [HttpGet("latest-price")]
-        public IActionResult GetLatestPrice()
+        [HttpGet("{ownerId}/latest-price")]
+        public IActionResult GetLatestPrice(int ownerId)
         {
             try
             {
-                return Ok(_waterRepository.GetLatestPrice());
+                return Ok(_waterRepository.GetLatestPrice(ownerId));
             }
             catch
             {

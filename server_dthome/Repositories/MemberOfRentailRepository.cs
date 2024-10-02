@@ -21,15 +21,15 @@ public class MemberOfRentalRepository : IMemberOfRentalRepository
         return _mapper.Map<List<MemberOfRentalVM>>(members);
     }
 
-    public MemberOfRentalVM GetById(int id)
+    public MemberOfRentalVM GetById(int ownerId, int id)
     {
-        var member = _context.MemberOfRentals.FirstOrDefault(m => m.MemberOfRentalId == id);
+        var member = _context.MemberOfRentals.FirstOrDefault(m => m.OwnerId == ownerId && m.MemberOfRentalId == id);
         return _mapper.Map<MemberOfRentalVM>(member);
     }
 
-    public List<MemberOfRentalVM> GetByIdRental(int idRental)
+    public List<MemberOfRentalVM> GetByIdRental(int ownerId, int idRental)
     {
-        var members = _context.MemberOfRentals.Where(m => m.RentalId == idRental).ToList();
+        var members = _context.MemberOfRentals.Where(m => m.OwnerId == ownerId && m.RentalId == idRental).ToList();
         return _mapper.Map<List<MemberOfRentalVM>>(members);
     }
 

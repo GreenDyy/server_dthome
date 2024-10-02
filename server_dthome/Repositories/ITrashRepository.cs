@@ -16,6 +16,6 @@ namespace server_dthome.Repositories
         // Sửa
         public bool Update(int id, TrashModel trashModel);
         // Lấy giá mới nhất
-        public TrashVM GetLatestPrice();
+        public TrashVM GetLatestPrice(int ownerId);
     }
 }

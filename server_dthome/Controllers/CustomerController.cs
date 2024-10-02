@@ -31,12 +31,47 @@ namespace server_dthome.Controllers
             }
         }
 
+        [HttpGet("{ownerId}/get-all")]
+        public IActionResult GetAll(int ownerId)
+        {
+            try
+            {
+                var customers = _customerRepository.GetAll(ownerId);
+                return Ok(customers);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.Message });
+            }
+        }
+
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
             try
             {
                 var customer = _customerRepository.GetById(id);
+                if (customer != null)
+                {
+                    return Ok(customer);
+                }
+                else
+                {
+                    return NotFound(new { message = "Customer not found" });
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.Message });
+            }
+        }
+
+        [HttpGet("{ownerId}/{id}")]
+        public IActionResult GetById(int ownerId, int id)
+        {
+            try
+            {
+                var customer = _customerRepository.GetById(ownerId, id);
                 if (customer != null)
                 {
                     return Ok(customer);

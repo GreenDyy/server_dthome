@@ -16,6 +16,6 @@ namespace server_dthome.Repositories
         // Sửa
         public bool Update(int id, WaterModel waterModel);
         // Lấy giá mới nhất
-        public WaterVM GetLatestPrice();
+        public WaterVM GetLatestPrice(int ownerId);
     }
 }

@@ -25,6 +25,8 @@ public partial class OwnerBuilding
 
     public virtual ICollection<MemberOfRental> MemberOfRentals { get; set; } = new List<MemberOfRental>();
 
+    public virtual ICollection<OwnerAccount> OwnerAccounts { get; set; } = new List<OwnerAccount>();
+
     public virtual ICollection<Power> Powers { get; set; } = new List<Power>();
 
     public virtual ICollection<Rental> Rentals { get; set; } = new List<Rental>();

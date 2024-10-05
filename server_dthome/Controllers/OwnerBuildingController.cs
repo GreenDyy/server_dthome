@@ -105,5 +105,25 @@ namespace server_dthome.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.Message });
             }
         }
+
+        [HttpGet("check-exist-phone-number/{phoneNumber}")]
+        public IActionResult CheckExistPhoneNumber(string phoneNumber)
+        {
+            try
+            {
+                if (_ownerBuildingRepository.CheckExistPhoneNumber(phoneNumber))
+                {
+                    return Ok(new { message = "Số điện thoại đã tồn tại", status = false });
+                }
+                else
+                {
+                    return Ok(new { message = "Số điện thoại hợp lệ", status = true });
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.Message });
+            }
+        }
     }
 }

@@ -30,6 +30,7 @@ builder.Services.AddScoped<IPowerRepository, PowerRepository>();
 builder.Services.AddScoped<IInvoiceRepository, InvoiceRepository>();
 builder.Services.AddScoped<IOwnerAccountRepository, OwnerAccountRepository>();
 builder.Services.AddScoped<IOwnerBuildingRepository, OwnerBuildingRepository>();
+builder.Services.AddScoped<ITwilioSMSRepository, TwilioSMSRepository>();
 
 var app = builder.Build();
 

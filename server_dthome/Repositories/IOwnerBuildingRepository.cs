@@ -19,5 +19,7 @@ namespace server_dthome.Repositories
 
         // Xóa một chủ sở hữu theo ID
         bool Delete(int id);
+
+        bool CheckExistPhoneNumber(string phoneNumber);
     }
 }

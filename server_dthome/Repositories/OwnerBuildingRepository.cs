@@ -59,5 +59,14 @@ namespace server_dthome.Repositories
             }
             return false;
         }
+        public bool CheckExistPhoneNumber(string phoneNumber)
+        {
+            var owner = _context.OwnerBuildings.FirstOrDefault(o => o.PhoneNumber == phoneNumber);
+            if(owner != null)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

@@ -21,5 +21,7 @@ namespace server_dthome.Repositories
         bool Update(int id, OwnerAccountModel ownerAccountModel);
 
         OwnerBuildingVM Login(LoginModel loginModel);
+
+       
     }
 }

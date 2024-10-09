@@ -37,17 +37,17 @@ public partial class DthomeContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=GREEND;Initial Catalog=DTHome;Integrated Security=True;Trust Server Certificate=True");
+        => optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=DTHome;Integrated Security=True;Trust Server Certificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Customer>(entity =>
         {
-            entity.HasKey(e => e.CustomerId).HasName("PK__Customer__A4AE64D80441DCB2");
+            entity.HasKey(e => e.CustomerId).HasName("PK__Customer__A4AE64D8927C52C4");
 
             entity.ToTable("Customer");
 
-            entity.HasIndex(e => e.CitizenId, "UQ__Customer__6E49FBED40978B52").IsUnique();
+            entity.HasIndex(e => e.CitizenId, "UQ__Customer__6E49FBEDAF796816").IsUnique();
 
             entity.Property(e => e.AnotherPhotoUrl)
                 .HasMaxLength(255)
@@ -82,7 +82,7 @@ public partial class DthomeContext : DbContext
 
         modelBuilder.Entity<Invoice>(entity =>
         {
-            entity.HasKey(e => e.InvoiceId).HasName("PK__Invoice__D796AAD54A0A841F");
+            entity.HasKey(e => e.InvoiceId).HasName("PK__Invoice__D796AAD5CCE2693F");
 
             entity.ToTable("Invoice");
 
@@ -104,7 +104,7 @@ public partial class DthomeContext : DbContext
             entity.HasOne(d => d.Customer).WithMany(p => p.Invoices)
                 .HasForeignKey(d => d.CustomerId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Invoice__Custome__5441852A");
+                .HasConstraintName("FK__Invoice__Custome__5535A963");
 
             entity.HasOne(d => d.Owner).WithMany(p => p.Invoices)
                 .HasForeignKey(d => d.OwnerId)
@@ -113,12 +113,12 @@ public partial class DthomeContext : DbContext
             entity.HasOne(d => d.Room).WithMany(p => p.Invoices)
                 .HasForeignKey(d => d.RoomId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Invoice__RoomID__5535A963");
+                .HasConstraintName("FK__Invoice__RoomID__5629CD9C");
         });
 
         modelBuilder.Entity<MemberOfRental>(entity =>
         {
-            entity.HasKey(e => e.MemberOfRentalId).HasName("PK__MemberOf__766D4F36E6802489");
+            entity.HasKey(e => e.MemberOfRentalId).HasName("PK__MemberOf__766D4F364FE26B57");
 
             entity.ToTable("MemberOfRental");
 
@@ -143,7 +143,7 @@ public partial class DthomeContext : DbContext
 
             entity.ToTable("OwnerAccount");
 
-            entity.HasIndex(e => e.PhoneNumber, "UQ__OwnerAcc__85FB4E388D28939C").IsUnique();
+            entity.HasIndex(e => e.PhoneNumber, "UQ__OwnerAcc__85FB4E38A372D052").IsUnique();
 
             entity.Property(e => e.CreatedAt).HasColumnType("datetime");
             entity.Property(e => e.Password).HasMaxLength(255);
@@ -153,12 +153,12 @@ public partial class DthomeContext : DbContext
             entity.HasOne(d => d.Owner).WithMany(p => p.OwnerAccounts)
                 .HasForeignKey(d => d.OwnerId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__OwnerAcco__Owner__59FA5E80");
+                .HasConstraintName("FK__OwnerAcco__Owner__5AEE82B9");
         });
 
         modelBuilder.Entity<OwnerBuilding>(entity =>
         {
-            entity.HasKey(e => e.OwnerId).HasName("PK__OwnerBui__819385B8BD212181");
+            entity.HasKey(e => e.OwnerId).HasName("PK__OwnerBui__819385B8C8593AEA");
 
             entity.ToTable("OwnerBuilding");
 
@@ -178,7 +178,7 @@ public partial class DthomeContext : DbContext
 
         modelBuilder.Entity<Power>(entity =>
         {
-            entity.HasKey(e => e.PowerId).HasName("PK__Power__8C5F25B0F25128F8");
+            entity.HasKey(e => e.PowerId).HasName("PK__Power__8C5F25B0BF385860");
 
             entity.ToTable("Power");
 
@@ -193,7 +193,7 @@ public partial class DthomeContext : DbContext
 
         modelBuilder.Entity<Rental>(entity =>
         {
-            entity.HasKey(e => e.RentalId).HasName("PK__Rental__97005943575EA4B3");
+            entity.HasKey(e => e.RentalId).HasName("PK__Rental__97005943B5EF65BE");
 
             entity.ToTable("Rental");
 
@@ -222,7 +222,7 @@ public partial class DthomeContext : DbContext
 
         modelBuilder.Entity<Room>(entity =>
         {
-            entity.HasKey(e => e.RoomId).HasName("PK__Room__32863939DC9AD954");
+            entity.HasKey(e => e.RoomId).HasName("PK__Room__3286393918D243CA");
 
             entity.ToTable("Room");
 
@@ -246,7 +246,7 @@ public partial class DthomeContext : DbContext
 
         modelBuilder.Entity<Trash>(entity =>
         {
-            entity.HasKey(e => e.TrashId).HasName("PK__Trash__E7477AC4D0C5F29C");
+            entity.HasKey(e => e.TrashId).HasName("PK__Trash__E7477AC42D661411");
 
             entity.ToTable("Trash");
 
@@ -261,7 +261,7 @@ public partial class DthomeContext : DbContext
 
         modelBuilder.Entity<Water>(entity =>
         {
-            entity.HasKey(e => e.WaterId).HasName("PK__Water__C4F18EAF49C527FC");
+            entity.HasKey(e => e.WaterId).HasName("PK__Water__C4F18EAFE85E264A");
 
             entity.Property(e => e.WaterId).HasColumnName("WaterID");
             entity.Property(e => e.EffectiveDate).HasColumnType("datetime");

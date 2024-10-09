@@ -19,6 +19,7 @@ namespace server_dthome.Repositories
 
         public OwnerAccountVM Create(OwnerAccountModel ownerAccountModel)
         {
+            ownerAccountModel.Password = BCrypt.Net.BCrypt.HashPassword(ownerAccountModel.Password);
             var account = _mapper.Map<OwnerAccount>(ownerAccountModel);
             _context.OwnerAccounts.Add(account);
             _context.SaveChanges();
@@ -66,22 +67,23 @@ namespace server_dthome.Repositories
         {
             //var account = _context.OwnerAccounts.FirstOrDefault(a => a.AccountId == id);
             var account = _context.OwnerAccounts.FirstOrDefault(o => o.PhoneNumber == loginModel.PhoneNumber);
-            if (account != null) {
-                //bool isPasswordMatch = BCrypt.Verify(loginModel.Password.Trim(), account.Password);
-                //if (isPasswordMatch)
-                //{
-                //    var owner = _context.OwnerBuildings.FirstOrDefault(o => o.PhoneNumber == phoneNumber);
-                //         return _mapper.Map<OwnerBuildingVM>(owner);
-                //}
-                //for test
-                if (loginModel.Password == account.Password)
+            if (account != null)
+            {
+                bool isPasswordMatch = BCrypt.Net.BCrypt.Verify(loginModel.Password.Trim(), account.Password);
+                if (isPasswordMatch)
                 {
                     var owner = _context.OwnerBuildings.FirstOrDefault(o => o.PhoneNumber == loginModel.PhoneNumber);
-                    //int a = new JwtSecurityTokenHandler().WriteToken("ssa");
                     return _mapper.Map<OwnerBuildingVM>(owner);
                 }
+                //for test
+                //if (loginModel.Password == account.Password)
+                //{
+                //    var owner = _context.OwnerBuildings.FirstOrDefault(o => o.PhoneNumber == loginModel.PhoneNumber);
+                //    //int a = new JwtSecurityTokenHandler().WriteToken("ssa");
+                //    return _mapper.Map<OwnerBuildingVM>(owner);
+                //}
             }
-          return null;
+            return null;
         }
     }
 }

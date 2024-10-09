@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using server_dthome.Models;
 using server_dthome.Repositories;
@@ -7,6 +8,7 @@ using server_dthome.ViewModels;
 namespace server_dthome.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class OwnerBuildingController : ControllerBase
     {

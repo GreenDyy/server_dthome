@@ -1,4 +1,5 @@
-﻿using server_dthome.Models;
+﻿using server_dthome.Entities;
+using server_dthome.Models;
 using server_dthome.ViewModels;
 
 namespace server_dthome.Repositories
@@ -22,6 +23,6 @@ namespace server_dthome.Repositories
 
         OwnerBuildingVM Login(LoginModel loginModel);
 
-       
+        string GenerateJwtToken(OwnerBuildingVM account);
     }
 }

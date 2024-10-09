@@ -117,9 +117,15 @@ namespace server_dthome.Controllers
                 }
 
                 var account = _ownerAccountRepository.Login(loginModel);
+             
                 if (account != null)
                 {
-                    return Ok(account);
+                    var accessToken = _ownerAccountRepository.GenerateJwtToken(account);
+                    return Ok(new
+                    {
+                        account,
+                        accessToken
+                    });
                 }
                 else
                 {

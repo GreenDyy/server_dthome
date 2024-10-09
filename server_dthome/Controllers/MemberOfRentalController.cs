@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using server_dthome.Entities;
 using server_dthome.Models;
@@ -6,6 +7,7 @@ using server_dthome.Repositories;
 using server_dthome.ViewModels;
 
 [Route("api/[controller]")]
+[Authorize]
 [ApiController]
 public class MemberOfRentalController : ControllerBase
 {

@@ -3,10 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using server_dthome.ViewModels;
 using server_dthome.Repositories;
 using server_dthome.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace server_dthome.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class InvoiceController : ControllerBase
     {

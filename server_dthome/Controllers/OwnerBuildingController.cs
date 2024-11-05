@@ -8,7 +8,6 @@ using server_dthome.ViewModels;
 namespace server_dthome.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize]
     [ApiController]
     public class OwnerBuildingController : ControllerBase
     {
@@ -32,7 +31,6 @@ namespace server_dthome.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.Message });
             }
         }
-
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -53,7 +51,6 @@ namespace server_dthome.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.Message });
             }
         }
-
         [HttpPost("create")]
         public IActionResult Create(OwnerBuildingModel ownerModel)
         {
@@ -67,7 +64,6 @@ namespace server_dthome.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.Message });
             }
         }
-
         [HttpPut("update/{id}")]
         public IActionResult Update(int id, OwnerBuildingModel ownerModel)
         {
@@ -87,7 +83,6 @@ namespace server_dthome.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.Message });
             }
         }
-
         [HttpDelete("delete/{id}")]
         public IActionResult Delete(int id)
         {

@@ -95,7 +95,7 @@ namespace server_dthome.Repositories
 
             var secrectKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:SecrectKey"]));
             var credentials = new SigningCredentials(secrectKey, SecurityAlgorithms.HmacSha256);
-            var expiresIn = DateTime.Now.AddMinutes(1); // thời hạn
+            var expiresIn = DateTime.Now.AddDays(7); // thời hạn
 
             var token = new JwtSecurityToken(
                 claims: claims,

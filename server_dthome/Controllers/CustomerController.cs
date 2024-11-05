@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace server_dthome.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize]
+    //[Authorize]
     [ApiController]
     public class CustomerController : ControllerBase
     {
